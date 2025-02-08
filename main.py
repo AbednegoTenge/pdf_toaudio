@@ -9,7 +9,7 @@ def extract_pdf(pdf):
         text += i.extract_text()
     return text.strip()
 
-def read_pdf(pdf, voice_id=None):
+def read_pdf(pdf):
     engine = pyttsx3.init()
     engine.say(extract_pdf(pdf))
     engine.runAndWait( )
