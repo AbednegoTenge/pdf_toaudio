@@ -2,10 +2,17 @@ from pypdf import PdfReader
 import pyttsx3
 
 
-reader = PdfReader('example.pdf')
-page = reader.pages[0]
-text = page.extract_text()
+def extract_pdf(pdf):
+    reader = PdfReader(pdf)
+    text = ""
+    for i in reader.pages:
+        text += i.extract_text()
+    return text.strip()
 
-engine = pyttsx3.init()
-engine.say(text)
-engine.runAn
+def read_pdf(pdf):
+    engine = pyttsx3.init()
+    engine.say(extract_pdf(pdf))
+    engine.runAndWait()
+
+if __name__ == "__main__":
+    read_pdf("example.pdf")
